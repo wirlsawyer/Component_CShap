@@ -13,6 +13,7 @@ namespace Component
         private Queue<NSOperation> _queue = null;
         private Thread _thread = null;
         private bool flag_continue;
+        private object locker = new Object();
 
         public NSOperationQueue()
         {
@@ -43,13 +44,20 @@ namespace Component
 
         public void Add(NSOperation operation)
         {
-            _queue.Enqueue(operation);
+            lock (locker)
+            {
+                _queue.Enqueue(operation);
+            }
+            
         }
 
         public void CancelAll()
         {
             this.Stop();
-            _queue.Clear();
+            lock (locker)
+            {
+                _queue.Clear();
+            }
             this.Start();
 
             Debug.WriteLine("NSOperationQueue did CancelAll");
@@ -74,7 +82,11 @@ namespace Component
                 }
                 else
                 {
-                    NSOperation item = _queue.Dequeue();
+                    NSOperation item = null;
+                    lock (locker)
+                    {
+                        item = _queue.Dequeue();
+                    }
                     item.Execution();
                 }
             }
