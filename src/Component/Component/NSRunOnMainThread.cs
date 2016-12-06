@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Component
 {
-    class NSRunOnMainThread
+    public class NSRunOnMainThread
     {
         static public void Run(Form form, Delegate method)
         {
