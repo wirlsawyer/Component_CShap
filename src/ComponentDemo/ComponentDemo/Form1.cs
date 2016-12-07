@@ -159,5 +159,16 @@ namespace ComponentDemo
                 row.HeaderCell.Value = (row.Index + 1).ToString();
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+            List<NSSerialPortInfo> infos = NSSerialPort.Search();
+            foreach (NSSerialPortInfo info in infos)
+            {
+                listView1.Items.Add(new ListViewItem(new[] { info.ComPort, info.DeviceID, info.Caption, info.Description }));
+            }
+        }
     }
 }

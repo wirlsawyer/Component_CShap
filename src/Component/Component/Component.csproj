@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +52,7 @@
     <Compile Include="NSOperation.cs" />
     <Compile Include="NSOperationQueue.cs" />
     <Compile Include="NSRegex.cs" />
+    <Compile Include="NSSerialPort.cs" />
     <Compile Include="NSRunOnMainThread.cs" />
     <Compile Include="NSSleep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
