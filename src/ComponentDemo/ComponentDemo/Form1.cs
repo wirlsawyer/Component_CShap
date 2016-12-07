@@ -170,5 +170,19 @@ namespace ComponentDemo
                 listView1.Items.Add(new ListViewItem(new[] { info.ComPort, info.DeviceID, info.Caption, info.Description }));
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            listBox3.Items.Clear();
+            NSBoardCast.form = this;
+            NSBoardCast.Recv(8888, "echo from server", 5000);
+            NSBoardCast.Send("255.255.255.255", 8888, "ping", 2000);
+            NSBoardCast.DidResponedChanged += DidResponedChanged;
+        }
+
+        private void DidResponedChanged(String host, String msg)
+        {
+            listBox3.Items.Add(String.Format("{0}:{1}", host, msg));
+        }
     }
 }

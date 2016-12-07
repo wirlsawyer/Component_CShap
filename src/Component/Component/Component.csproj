@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="NSBoardCast.cs" />
     <Compile Include="NSMySQL.cs" />
     <Compile Include="NSOperation.cs" />
     <Compile Include="NSOperationQueue.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="NSSerialPort.cs" />
     <Compile Include="NSRunOnMainThread.cs" />
     <Compile Include="NSSleep.cs" />
+    <Compile Include="NSTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIRichTextBox.cs" />
   </ItemGroup>

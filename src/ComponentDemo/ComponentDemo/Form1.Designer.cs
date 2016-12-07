@@ -33,6 +33,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -45,19 +46,21 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.button8 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button8 = new System.Windows.Forms.Button();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -67,6 +70,7 @@
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -78,6 +82,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -100,16 +105,16 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(6, 6);
+            this.listBox1.Location = new System.Drawing.Point(3, 6);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(290, 160);
+            this.listBox1.Size = new System.Drawing.Size(696, 304);
             this.listBox1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 172);
+            this.button1.Location = new System.Drawing.Point(3, 311);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(293, 23);
+            this.button1.Size = new System.Drawing.Size(690, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Demo";
             this.button1.UseVisualStyleBackColor = true;
@@ -128,6 +133,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "NSRegex";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(331, 80);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(195, 12);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "http://jsfiddle.net/JohnnyWorker/u6xMc/";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // textBox2
             // 
@@ -229,9 +245,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(4, 95);
+            this.button5.Location = new System.Drawing.Point(4, 311);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(395, 23);
+            this.button5.Size = new System.Drawing.Size(692, 23);
             this.button5.TabIndex = 1;
             this.button5.Text = "Demo";
             this.button5.UseVisualStyleBackColor = true;
@@ -239,22 +255,11 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(4, 4);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 4);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(395, 85);
+            this.richTextBox1.Size = new System.Drawing.Size(696, 301);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(331, 80);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(195, 12);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "http://jsfiddle.net/JohnnyWorker/u6xMc/";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // tabPage6
             // 
@@ -269,24 +274,15 @@
             this.tabPage6.Text = "NSMySQL";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // button7
             // 
-            this.button6.Location = new System.Drawing.Point(3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(693, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "List Tables";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 12;
-            this.listBox2.Location = new System.Drawing.Point(3, 32);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(693, 88);
-            this.listBox2.TabIndex = 1;
+            this.button7.Location = new System.Drawing.Point(4, 126);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(692, 23);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Get Datas";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dataGridView1
             // 
@@ -297,15 +293,24 @@
             this.dataGridView1.Size = new System.Drawing.Size(693, 179);
             this.dataGridView1.TabIndex = 2;
             // 
-            // button7
+            // listBox2
             // 
-            this.button7.Location = new System.Drawing.Point(4, 126);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(692, 23);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "Get Datas";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(3, 32);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(693, 88);
+            this.listBox2.TabIndex = 1;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(3, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(693, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "List Tables";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // tabPage7
             // 
@@ -318,16 +323,6 @@
             this.tabPage7.Text = "NSSerialPort";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(3, 195);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(527, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Demo";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -337,7 +332,7 @@
             this.columnHeader4});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(527, 186);
+            this.listView1.Size = new System.Drawing.Size(693, 302);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -361,6 +356,46 @@
             this.columnHeader4.Text = "Description";
             this.columnHeader4.Width = 142;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(3, 311);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(693, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Demo";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.listBox3);
+            this.tabPage8.Controls.Add(this.button9);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(699, 337);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "NSBoardCast";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(3, 311);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(693, 23);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Demo";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 12;
+            this.listBox3.Location = new System.Drawing.Point(3, 3);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(693, 304);
+            this.listBox3.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -382,6 +417,7 @@
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -418,6 +454,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ListBox listBox3;
     }
 }
 
