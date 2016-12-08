@@ -8,7 +8,7 @@ namespace Component
 {
     public class Class1
     {
-        public void Test()
+        static public void Test()
         {
 
         }

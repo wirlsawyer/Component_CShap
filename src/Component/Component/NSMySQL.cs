@@ -49,10 +49,11 @@ namespace Component
             //{ "debug":1, "mode":0, "dbname":"vivobaby"}
             ArrayList result = new ArrayList();
 
-            IDictionary json = new Dictionary<string, Object>();
-            json.Add("mode", "0");
+            NSJObject json = new NSJObject();
+            json.Add("debug", 0);
+            json.Add("mode", 0);
             json.Add("dbname", dbName);
-            string json_data = JsonConvert.SerializeObject(json);//存放序列後的文字
+            String json_data = json.ToJson();
             String context = push(json_data);
 
             JArray jArray = JArray.Parse(context);
@@ -68,13 +69,14 @@ namespace Component
         {
             //{ "debug":1, "mode":"1", "sql":"SELECT * FROM devagingtestreport", "table":"devagingtestreport"}
             NSMySQLData result = new NSMySQLData();
-
-            IDictionary json = new Dictionary<string, Object>();
-            json.Add("mode", "1");
+            
+            NSJObject json = new NSJObject();
+            json.Add("debug", 0);
+            json.Add("mode", 1);
             json.Add("dbname", dbName);
             json.Add("table", tableName);
             json.Add("sql", SQL);
-            string json_data = JsonConvert.SerializeObject(json);//存放序列後的文字
+            String json_data = json.ToJson();
             String context = push(json_data);
             Debug.WriteLine(context);
 
