@@ -184,5 +184,50 @@ namespace ComponentDemo
         {
             listBox3.Items.Add(String.Format("{0}:{1}", host, msg));
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Class1.Test();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            NSJObject obj = new NSJObject();
+            obj.Add("test1", "testvalue1");
+            obj.Add("test2", "testvalue2");
+            obj.Add("test3", 1);
+            obj.Add("test4", true);
+            NSJArray obj2 = new NSJArray("test2", "test2value", 3, false);
+
+            NSJObject obj3 = new NSJObject();
+            obj3.Add("test8", "testvalue8");
+            obj3.Add("test9", "testvalue9");
+
+
+            obj2.Add(obj3);
+            obj.Add("test5", obj2);
+
+            textBox3.Text = "";
+            textBox3.Text += "NSJObject obj = new NSJObject();\r\n";
+            textBox3.Text += "obj.Add(\"test1\", \"testvalue1\");\r\n";
+            textBox3.Text += "obj.Add(\"test2\", \"testvalue2\");\r\n";
+            textBox3.Text += "obj.Add(\"test3\", 1);\r\n";
+            textBox3.Text += "obj.Add(\"test4\", true);\r\n";
+            textBox3.Text += "\r\n";
+            textBox3.Text += "\r\n";
+
+            textBox3.Text += "NSJObject obj3 = new NSJObject();\r\n";
+            textBox3.Text += "obj3.Add(\"test8\", \"testvalue8\");\r\n";
+            textBox3.Text += "obj3.Add(\"test9\", \"testvalue9\");\r\n";
+            textBox3.Text += "\r\n";
+            textBox3.Text += "\r\n";
+
+            textBox3.Text += "NSJArray obj2 = new NSJArray(\"test2\", \"test2value\", 3, false);\r\n";
+            textBox3.Text += "obj2.Add(obj3);\r\n";
+            textBox3.Text += "obj.Add(\"test5\", obj2);\r\n";
+            textBox3.Text += "\r\n";
+            textBox3.Text += "\r\n";
+            textBox3.Text += obj.ToJson();
+        }
     }
 }

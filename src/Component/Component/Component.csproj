@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="NSBoardCast.cs" />
+    <Compile Include="NSJArray.cs" />
+    <Compile Include="NSJObject.cs" />
     <Compile Include="NSMySQL.cs" />
     <Compile Include="NSOperation.cs" />
     <Compile Include="NSOperationQueue.cs" />
