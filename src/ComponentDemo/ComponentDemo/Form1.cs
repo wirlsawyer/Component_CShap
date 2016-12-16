@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -193,6 +194,7 @@ namespace ComponentDemo
         private void button10_Click(object sender, EventArgs e)
         {
             NSJObject obj = new NSJObject();
+            //obj.Add("cc, \":0_", "valu:e");
             obj.Add("test1", "testvalue1");
             obj.Add("test2", "testvalue2");
             obj.Add("test3", 1);
@@ -228,6 +230,75 @@ namespace ComponentDemo
             textBox3.Text += "\r\n";
             textBox3.Text += "\r\n";
             textBox3.Text += obj.ToJson();
+
+            NSJObject a = new NSJObject();
+            a.Parser(obj.ToJson());
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            openFileDialog1.Filter = "Zip files (*.zip)|*.zip|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName.Length > 0 && System.IO.File.Exists(openFileDialog1.FileName))
+            {
+                label3.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (label3.Text.Length == 0) return;
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            DialogResult result = fbd.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                NSZip.UnZip(label3.Text, fbd.SelectedPath);
+
+                string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            String filePath = Application.StartupPath + "\\" + "test.ini";
+            NSINI.WritePrivateProfile(filePath, "section1", "key1", "value1");
+            NSINI.WritePrivateProfile(filePath, "section1", "key2", "value2");
+            NSINI.WritePrivateProfile(filePath, "section2", "key1", 1);
+            NSINI.WritePrivateProfile(filePath, "section2", "key2", 2);
+
+            String strValue1 = NSINI.GetPrivateProfile(filePath, "section1", "key1", "fail");
+            String strValue2 = NSINI.GetPrivateProfile(filePath, "section1", "key2", "fail");
+
+            int iValue1 = NSINI.GetPrivateProfile(filePath, "section2", "key1", -1);
+            int iValue2 = NSINI.GetPrivateProfile(filePath, "section2", "key2", -1);
+
+            textBox4.Text = "";
+            textBox4.Text += "strValue1=" + strValue1;
+            textBox4.Text += "\r\n";
+            textBox4.Text += "strValue2=" + strValue2;
+            textBox4.Text += "\r\n";
+            textBox4.Text += "iValue1=" + iValue1;
+            textBox4.Text += "\r\n";
+            textBox4.Text += "iValue2=" + iValue2;
+            textBox4.Text += "\r\n";
+            textBox4.Text += "\r\n";
+
+            foreach (String section in NSINI.GetSectionNames(filePath))
+            {
+                textBox4.Text += "["+ section + "]\r\n";
+                foreach (String key in NSINI.GetEntryNames(filePath, section))
+                {
+                    textBox4.Text += "\t"+key + "\r\n";
+                }
+            }
         }
     }
 }

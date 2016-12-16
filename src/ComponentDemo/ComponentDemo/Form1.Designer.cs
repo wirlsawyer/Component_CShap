@@ -62,8 +62,15 @@
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button9 = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.button10 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -75,6 +82,8 @@
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.tabPage11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -88,6 +97,8 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -412,6 +423,14 @@
             this.tabPage9.Text = "NSJson";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(3, 3);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(693, 302);
+            this.textBox3.TabIndex = 1;
+            // 
             // button10
             // 
             this.button10.Location = new System.Drawing.Point(3, 311);
@@ -422,13 +441,74 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
-            // textBox3
+            // tabPage10
             // 
-            this.textBox3.Location = new System.Drawing.Point(3, 3);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(693, 302);
-            this.textBox3.TabIndex = 1;
+            this.tabPage10.Controls.Add(this.button12);
+            this.tabPage10.Controls.Add(this.button11);
+            this.tabPage10.Controls.Add(this.label3);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(699, 337);
+            this.tabPage10.TabIndex = 9;
+            this.tabPage10.Text = "NSZip";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(608, 42);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 2;
+            this.button12.Text = "UnZip";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(608, 12);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Open";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(583, 23);
+            this.label3.TabIndex = 0;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.textBox4);
+            this.tabPage11.Controls.Add(this.button13);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(699, 337);
+            this.tabPage11.TabIndex = 10;
+            this.tabPage11.Text = "NSINI";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(3, 311);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(693, 23);
+            this.button13.TabIndex = 0;
+            this.button13.Text = "Demo";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(3, 3);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(693, 302);
+            this.textBox4.TabIndex = 1;
             // 
             // Form1
             // 
@@ -455,6 +535,9 @@
             this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -497,6 +580,13 @@
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 
