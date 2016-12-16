@@ -231,8 +231,32 @@ namespace ComponentDemo
             textBox3.Text += "\r\n";
             textBox3.Text += obj.ToJson();
 
-            NSJObject a = new NSJObject();
-            a.Parser(obj.ToJson());
+
+            Dictionary<String, Object> dict = NSJObject.Parser(obj.ToJson());
+            Debug.WriteLine(String.Format("test1 = {0}", NSJObject.FastGet(dict, "test1").ToString()));
+            Debug.WriteLine(String.Format("test2 = {0}", NSJObject.FastGet(dict, "test2").ToString()));
+            Debug.WriteLine(String.Format("test3 = {0}", NSJObject.FastGet(dict, "test3").ToString()));
+            Debug.WriteLine(String.Format("test4 = {0}", NSJObject.FastGet(dict, "test4").ToString()));
+
+            Debug.WriteLine("test5 [0]"+ NSJObject.FastGet(dict, "test5", 0).ToString());
+            Debug.WriteLine("test5 [1]"+ NSJObject.FastGet(dict, "test5", 1).ToString());
+            Debug.WriteLine("test5 [2]"+ NSJObject.FastGet(dict, "test5", 2).ToString());
+            Debug.WriteLine("test5 [3]"+ NSJObject.FastGet(dict, "test5", 3).ToString());
+            Debug.WriteLine("test5 [4]"+ NSJObject.FastGet(dict, "test5", 4, "test8").ToString());
+            Debug.WriteLine("test5 [4]" + NSJObject.FastGet(dict, "test5", 4, "test9").ToString());
+
+            foreach (Object o in (List<Object>)dict["test5"])
+            {
+                if (o.GetType() == typeof(Dictionary<String, Object>))
+                {
+                    dict = (Dictionary<String, Object>)o;
+                    Debug.WriteLine(String.Format("test8 = {0}", dict["test8"]));
+                    Debug.WriteLine(String.Format("test9 = {0}", dict["test9"]));
+                }
+                else {
+                    Debug.WriteLine(String.Format("test5 = {0}", o.ToString()));
+                }
+            }
         }
 
         private void button11_Click(object sender, EventArgs e)

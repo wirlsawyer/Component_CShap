@@ -75,10 +75,47 @@ namespace Component
             return result;
         }
 
-        private int ParserArray(String json, String curKey, Dictionary<String, Object> dict)
+        #region Parser
+        static public Object FastGet(Dictionary<String, Object> dict, params Object[] Params)
         {
-            int iPos1 = 0;
+            Object Source = dict;
+            foreach (Object key in Params)
+            {
+                Object value;
+                if (Source.GetType() == typeof(Dictionary<String, Object>))
+                {
+                    if (((Dictionary<String, Object>)Source).TryGetValue(key.ToString(), out value))
+                    {
+                        Source = value;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else if (Source.GetType() == typeof(List<Object>))
+                {
+                    if (((List<Object>)Source).Count > int.Parse(key.ToString()))
+                    {
+                        value = ((List<Object>)Source).ElementAt(int.Parse(key.ToString()));
+                        Source = value;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            return Source;
+        } 
+        static private int ParserArray(String json, String curKey, Dictionary<String, Object> dict)
+        {
+            int iPos1 = -1;
+            int iPos2 = -1;
+            int iPos5 = 0;
             String curValue = "";
+            List<Object> list = new List<Object>();
+            dict.Add(curKey, list);
 
             for (int i = 0; i < json.Length; i++)
             {
@@ -88,21 +125,46 @@ namespace Component
                         i += ParserArray(json.Substring(i + 1), curKey, dict);
                         break;
                     case '{':
-                       // i += ParserObject(json.Substring(i + 1), dict);
+                        Dictionary<String, Object> newDict = new Dictionary<String, Object>();
+                        list.Add(newDict);
+                        i += ParserObject(json.Substring(i + 1), newDict);
+                        break;
+                    case '"':
+                        if (iPos1 == -1)
+                        {
+                            iPos1 = i + 1;
+                        }
+                        else
+                        {
+                            iPos2 = i;
+                        }
                         break;
 
                     case ',':
                     case ']':
-                        curValue = json.Substring(iPos1, i - iPos1);
-                        Console.WriteLine("key:" + curKey + " value:" + curValue);
-                        iPos1 = i + 1;
+                        if (iPos1 < iPos2)
+                        {
+                            curValue = json.Substring(iPos1, iPos2 - iPos1);
+                            list.Add(curValue);
+                            //Console.WriteLine("key:" + curKey + " value:" + curValue);
+                        }
+                        else if (iPos1 == -1 && iPos2 == -1)
+                        {
+                            curValue = json.Substring(iPos5, i - iPos5);
+                            list.Add(curValue);
+                            //Console.WriteLine("key:" + curKey + " value:" + curValue);
+                        }
+
+                        iPos1 = -1;
+                        iPos2 = -1;
+                        iPos5 = i + 1;
                         break; 
                         
                 }
             }
-            return iPos1;
+            return iPos5;
         }
-        private int ParserObject(String json, Dictionary<String, Object> dict)
+        static private int ParserObject(String json, Dictionary<String, Object> dict)
         {
             int iPos1 = -1;
             int iPos2 = -1;
@@ -117,6 +179,7 @@ namespace Component
                 {
                     case '[':
                         i += ParserArray(json.Substring(i + 1), curKey, dict);
+                        iPos3 = -1;
                         break;
                     case '{':
                         i += ParserObject(json.Substring(i + 1), dict);
@@ -153,7 +216,7 @@ namespace Component
                             curValue = json.Substring(iPos1, iPos2 - iPos1);
                             iPos1 = -1;
                             iPos2 = -1;
-                            Console.WriteLine("key:"+ curKey + " value:"+ curValue);
+                            //Console.WriteLine("key:"+ curKey + " value:"+ curValue);
                             if (dict.ContainsKey(curKey))
                             {
                             }
@@ -166,9 +229,11 @@ namespace Component
                         else if (iPos1 == -1 && iPos2 == -1)
                         {
                             iPos4 = i;
+
+                            if (iPos3 == -1) break;
                             // numic
                             curValue = json.Substring(iPos3, i - iPos3);
-                            Console.WriteLine("key:" + curKey + " value:" + curValue);
+                            //Console.WriteLine("key:" + curKey + " value:" + curValue);
                             if (dict.ContainsKey(curKey))
                             {
                             }
@@ -183,11 +248,8 @@ namespace Component
 
             return iPos4+1;
         }
-        #region Parser
-        public NSJObject Parser(String json)
+        static public Dictionary<String, Object> Parser(String json)
         {
-        
-
             Dictionary<String, Object> dict = new Dictionary<String, Object>();
             
             for (int i = 0; i < json.Length; i++)
@@ -195,61 +257,37 @@ namespace Component
                 switch (json.ElementAt(i))
                 {
                     case '{':
-                        json = json.Substring(i+1);
-                        ParserObject(json, dict);
+                        i += ParserObject(json.Substring(i + 1), dict);
                         break;
-                    
-                    case '"':
-                    case ':':
-                    case ',':                       
-                    case '}':
+
+                    case '[':
+                       // i += ParserArray(json.Substring(i + 1), "[root]", dict);
                         break;
                 }
             }
-
+            /*
             foreach (KeyValuePair<String, Object> item in dict)
             {
-                Console.WriteLine(string.Format("{0} : {1}", item.Key, item.Value));
-            }
-            return null;
-            NSJObject result = null;
-            if (json.Substring(0, 1) != "{")
-            {
-                return result;
-            }
-
-            String[] items = json.Split(',');
-            foreach (String item in items)
-            {
-                String pattern1 = @"[\'\""]((.*?)[\'\""\s][:][\s\'\""])";
-                String pattern2 = @"([\s:\s][\'\""](.*?)[\'\""])";
-                String pattern3 = @"([\'\""\s][:][\s\'\""])";
-
-
-                String key = NSRegex.Do(item, pattern1);
-                if (key.Length == 0)
+                if (item.Value.GetType() == typeof(List<Object>))
                 {
-                    pattern1 = @"[\'\""]((.*?)[\'\""\s][:\s])";
-                    pattern2 = @"([\s:\s](.*?)*)";
-                    pattern3 = @"([\'\""\s][:\s])";
-                    key = NSRegex.Do(item, pattern1);
+                    Console.Write(item.Key + " : ");
+                    foreach (Object o in (List<Object>)item.Value)
+                    {
+                        Console.Write(o.ToString() + ", ");
+                    }
+                    Console.Write("\r\n");
+                }
+                else
+                {
+                    Console.WriteLine(string.Format("{0} : {1}", item.Key, item.Value));
                 }
                 
-                String spl = NSRegex.Do(item, pattern3);
-                String value = item.Replace(key+spl, "");
-
-                key = key.Substring(1, key.Length - 1 - spl.Length);
-                value = value.Substring(spl.Length-1, value.Length - 1 - spl.Length);
-
-                if (result == null)
-                {
-                    result = new NSJObject();
-                }
-                result.Add(key, value);                
             }
-
-            return result;
+            */
+            return dict;
         }
+
+       
         #endregion
     }
 }
