@@ -51,6 +51,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="NSEnvironment.cs" />
     <Compile Include="NSBoardCast.cs" />
+    <Compile Include="NSHttps.cs" />
     <Compile Include="NSINI.cs" />
     <Compile Include="NSJArray.cs" />
     <Compile Include="NSJObject.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="NSSerialPort.cs" />
     <Compile Include="NSRunOnMainThread.cs" />
     <Compile Include="NSSleep.cs" />
+    <Compile Include="NSString.cs" />
     <Compile Include="NSTime.cs" />
     <Compile Include="NSZip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

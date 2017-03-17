@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,6 +59,8 @@ namespace ComponentDemo
             String pattern = textBox2.Text;
             String result = NSRegex.Do(context, pattern);
             MessageBox.Show(result);
+
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -323,6 +326,31 @@ namespace ComponentDemo
                     textBox4.Text += "\t"+key + "\r\n";
                 }
             }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            CookieCollection Cookie = new CookieCollection();
+            HttpWebResponse response = NSHttps.CreateGetHttpResponse("https://c-shap.firebaseio.com/.json", null, null, Cookie);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream);
+                char[] buffer = new char[1024];
+                int data = 0;
+                string result = "";
+                //分批讀
+                while (true)
+                {
+                    data = streamReader.Read(buffer, 0, buffer.Length);
+                    string msg = new string(buffer, 0, data);
+                    result = result + msg;
+                    if (data == 0)
+                        break;
+                }
+                Console.WriteLine(result);
+            }
+
         }
     }
 }
