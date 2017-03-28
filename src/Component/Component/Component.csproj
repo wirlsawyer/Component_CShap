@@ -55,6 +55,7 @@
     <Compile Include="NSINI.cs" />
     <Compile Include="NSJArray.cs" />
     <Compile Include="NSJObject.cs" />
+    <Compile Include="NSJson.cs" />
     <Compile Include="NSMySQL.cs" />
     <Compile Include="NSOperation.cs" />
     <Compile Include="NSOperationQueue.cs" />

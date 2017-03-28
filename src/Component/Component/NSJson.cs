@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,12 @@ namespace Component
         public static bool Parser(String json, IDictionary dict)
         {
             //IDictionary dict = new Dictionary<string, Object>();
-
+            //json = json.Replace("\r\n", "");
             JObject jObject = null;
             try
             {
                 jObject = JObject.Parse(json);
-                jsonToDirect(jObject, dict);
+                JsonToDirect(jObject, dict);
             }
             catch (Newtonsoft.Json.JsonReaderException)
             {
@@ -28,22 +29,43 @@ namespace Component
             return true;
         }
 
-        private static void EnumDirect(IDictionary parent_dict)
+        public static void Enum(IDictionary parent_dict)
         {
             foreach (String key in parent_dict.Keys)
             {
                 Object value = parent_dict[key];
 
-                if (parent_dict[key].GetType() == typeof(String))
+                if (value is String)
                 {
-                    Console.WriteLine(key + " : " + value.ToString());
+                    Debug.WriteLine(key + " : " + value.ToString());
                 }
-                else
+                else if (value is IDictionary)
                 {
-                    Console.WriteLine(key);
+                    Debug.WriteLine(key);
+                    Enum((IDictionary)value);
+                }
+                else if (value is IList)
+                {
+                    Debug.WriteLine(key);
+                    Enum((IList)value);
+                }
+                
+            }
+        }
 
-                    EnumDirect((IDictionary)value);
+        public static void Enum(IList parent_list)
+        {
+            foreach (Object obj in parent_list)
+            {
+                if (obj is IDictionary)
+                {
+                    Enum((IDictionary)obj);
                 }
+                else if (obj is IList)
+                {
+                    Enum((IList)obj);
+                }
+                
             }
         }
 
@@ -71,13 +93,14 @@ namespace Component
                 }
                 else if (dict.Contains(key))
                 {
-                    if (dict[key].GetType() == typeof(String))
+                    if (dict[key] is IDictionary)
                     {
-                        str = dict[key].ToString();
+                        dict = (IDictionary)dict[key];
+                        
                     }
                     else
                     {
-                        dict = (IDictionary)dict[key];
+                        str = dict[key].ToString();
                     }
 
                 }
@@ -143,24 +166,55 @@ namespace Component
         }
 
         #region Tool
-        private static void jsonToDirect(JObject jObject, IDictionary parent_dict)
+        private static void JsonToDirect(JObject jObject, IDictionary parent_dict)
         {
             foreach (KeyValuePair<String, JToken> item in jObject)
             {
-                try
+                if (item.Value is JObject)
                 {
-                    //Console.WriteLine(item.Key);
                     JObject jValue = (JObject)item.Value;
 
                     IDictionary dict = new Dictionary<String, Object>();
                     parent_dict.Add(item.Key.ToString(), dict);
                     JsonToDirect(jValue, dict);
                 }
-                catch (Exception e)
+                else if (item.Value is JArray)
+                {
+                    JArray jArray = (JArray)item.Value;
+
+                    IList list = new List<Object>();
+                    parent_dict.Add(item.Key.ToString(), list);
+
+                    JsonToDirect(jArray, list);
+                }
+                else
                 {
                     parent_dict.Add(item.Key.ToString(), (String)item.Value.ToString());
-                    //Console.WriteLine(item.Value.ToString());
                 }
+
+               
+            }
+        }
+
+        private static void JsonToDirect(JArray jArray, IList parent_list)
+        {
+            foreach (Object obj in jArray)
+            {
+                if (obj is JObject)
+                {
+                    IDictionary dict = new Dictionary<String, Object>();
+                    parent_list.Add(dict);
+
+                    JsonToDirect((JObject)obj, dict);
+                }
+                else if (obj is JArray)
+                {
+                    IList list = new List<Object>();
+                    parent_list.Add(list);
+
+                    JsonToDirect((JArray)obj, list);
+                }
+      
             }
         }
         #endregion
